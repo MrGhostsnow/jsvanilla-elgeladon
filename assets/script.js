@@ -7,16 +7,17 @@ async function findAllPaletas() {
   console.log(paletas)
 
   paletas.forEach((paleta) => {
+      console.log(paleta)
     document.getElementById("paletaList").insertAdjacentHTML(
       "beforeend",`
-    <div class="PaletaListaItem" id="PaletaListaItem_${paleta.id}">
+    <div class="PaletaListaItem" id="PaletaListaItem_${paleta._id}">
         <div>
             <div class="PaletaListaItem__sabor">${paleta.sabor}</div>
             <div class="PaletaListaItem__preco">R$ ${paleta.preco}</div>
             <div class="PaletaListaItem__descricao">${paleta.descricao}</div>
             <div class="PaletaListaItem__acoes Acoes">
-              <button class="Acoes__editar" onclick="editPaleta(${paleta.id})">editar</button>
-              <button class="Acoes__deletar" onclick="deletePaleta(${paleta.id})">deletar</button>
+              <button class="Acoes__editar" onclick="editPaleta('${paleta._id}')">editar</button>
+              <button class="Acoes__deletar" onclick="deletePaleta('${paleta._id}')">deletar</button>
             </div>
         </div>
             <img class="PaletaListaItem__foto" src=${
@@ -92,14 +93,14 @@ async function findPaletaById() {
       const novaPaleta = await response.json();
 
       const html = `
-    <div class="PaletaListaItem" id="PaletaListaItem_${novaPaleta.id}">
+    <div class="PaletaListaItem" id="PaletaListaItem_${novaPaleta._id}">
         <div>
             <div class="PaletaListaItem__sabor">${novaPaleta.sabor}</div>
             <div class="PaletaListaItem__preco">R$ ${novaPaleta.preco.toFixed(2)}</div>
             <div class="PaletaListaItem__descricao">${novaPaleta.descricao}</div>
             <div class="PaletaListaItem__acoes Acoes">
-                <button class="Acoes__editar" onclick="editPaleta(${novaPaleta.id})">editar</button>
-                <button class="Acoes__deletar" onclick="deletePaleta(${novaPaleta.id})">deletar</button>
+                <button class="Acoes__editar" onclick="editPaleta('${novaPaleta._id}')">editar</button>
+                <button class="Acoes__deletar" onclick="deletePaleta('${novaPaleta._id}')">deletar</button>
             </div>
         </div>
             <img class="PaletaListaItem__foto" src=${novaPaleta.foto} alt=${`Paleta de ${novaPaleta.sabor}`} />
