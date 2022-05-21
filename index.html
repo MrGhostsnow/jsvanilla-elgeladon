@@ -56,18 +56,19 @@
           <div class="modal">
 
               <div class="modal-header">
-                  <h2>Cadastrar uma paleta</h2>
+                  <h2 id="title-header-modal">Cadastrar Paleta</h2>
                   <a onclick="fecharModalCadastro()" class="close-modal">x</a>
               </div>
 
               <div class="modal-body">
                   <div>
+                      <input type="hidden" id="id">
                       <input type="text" name="sabor" id="sabor" placeholder="Sabor da Paleta">
                       <input type="number" name="preco" id="preco" placeholder="Preço da Paleta">
                       <textarea type="text" name="descricao" id="descricao" placeholder="Descrição da Paleta"
                           rows="5"></textarea>
                       <input type="text" name="foto" id="foto" placeholder="Link da Foto da Paleta">
-                      <button onclick="createPaleta()">Cadastrar</button>
+                      <button id="button-form-modal" onclick="createPaleta()">Cadastrar</button>
                   </div>
               </div>
           </div>
