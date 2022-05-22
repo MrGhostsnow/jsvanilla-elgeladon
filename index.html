@@ -57,7 +57,7 @@
 
               <div class="modal-header">
                   <h2 id="title-header-modal">Cadastrar Paleta</h2>
-                  <a onclick="fecharModalCadastro()" class="close-modal">x</a>
+                  <a onclick="fecharModal()" class="close-modal">x</a>
               </div>
 
               <div class="modal-body">
@@ -74,6 +74,22 @@
           </div>
       </section>
 
+      <section class="modal-overlay" id="overlay-delete">
+        <div class="modal">
+          <div class="modal-header">
+            <h2 id="title-header-modal">Confirmar deleção</h2>
+            <a onclick="fecharModalDelete()" class="close-modal">x</a>
+        </div>
+        <div class="modal-body-delete">
+          <p>Deseja realmente apagar a paleta?</p>
+          <div class="btns_delete">
+            <button class="btn_delete_no btn_delete" onclick="fecharModalDelete()">Não</button>
+            <button class="btn_delete_yes btn_delete">Sim</button>
+          </div>
+        </div>
+        </div>
+      </section>
+
         
         <h2>Paletas Disponíveis:</h2>
         <div class="Home__container">
@@ -83,5 +99,10 @@
         </div>
       </div>
     <script src="./assets/script.js"></script>
+
+    <footer> 
+      <a id="footer" target="_blanke" href="https://github.com/MrGhostsnow">&copy;Mr.Ghostsnow
+      </a>
+    </footer>
 </body>
 </html>

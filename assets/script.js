@@ -17,7 +17,7 @@ async function findAllPaletas() {
             <div class="PaletaListaItem__descricao">${paleta.descricao}</div>
             <div class="PaletaListaItem__acoes Acoes">
               <button class="Acoes__editar" onclick="abrirModalCadastro('${paleta._id}')">editar</button>
-              <button class="Acoes__deletar" onclick="deletePaleta('${paleta._id}')">deletar</button>
+              <button class="Acoes__deletar" onclick="abrirModalDelete('${paleta._id}')">deletar</button>
             </div>
         </div>
             <img class="PaletaListaItem__foto" src=${
@@ -45,6 +45,10 @@ async function findPaletaById() {
         <div class="PaletaCardItem__preco">R$ ${paleta.preco}</div>
         <div class="PaletaCardItem__descricao">${paleta.descricao}</div>
       </div>
+        <div class="PaletaListaItem__acoes Acoes">
+              <button class="Acoes__editar" onclick="abrirModalCadastro('${paleta._id}')">editar</button>
+              <button class="Acoes__deletar" onclick="abrirModalDelete('${paleta._id}')">deletar</button>
+        </div>
         <img class="PaletaCardItem__foto" src=${
           paleta.foto
         } alt=${`Paleta de ${paleta.sabor}`} />
@@ -72,10 +76,10 @@ async function abrirModalCadastro(id = null) {
     }
 
 
-    document.querySelector(".modal-overlay").style.display = "flex";
+    document.querySelector("#overlay").style.display = "flex";
   }
   
-  function fecharModalCadastro() {
+  function fecharModal() {
     document.querySelector(".modal-overlay").style.display = "none";
     document.querySelector("#sabor").value = "";
     document.querySelector("#preco").value = 0;
@@ -123,7 +127,7 @@ async function abrirModalCadastro(id = null) {
             <div class="PaletaListaItem__descricao">${novaPaleta.descricao}</div>
             <div class="PaletaListaItem__acoes Acoes">
                 <button class="Acoes__editar" onclick="editPaleta(${novaPaleta._id})">editar</button>
-                <button class="Acoes__deletar" onclick="deletePaleta('${novaPaleta._id}')">deletar</button>
+                <button class="Acoes__deletar" onclick="abrirModalDelete('${novaPaleta._id}')">deletar</button>
             </div>
         </div>
             <img class="PaletaListaItem__foto" src=${novaPaleta.foto} alt=${`Paleta de ${novaPaleta.sabor}`} />
@@ -137,8 +141,20 @@ async function abrirModalCadastro(id = null) {
 
       
 
-  fecharModalCadastro();
+  fecharModal();
   };
+
+  function abrirModalDelete(id) {
+    document.querySelector("#overlay-delete").style.display = "flex";
+    const btnSim = document.querySelector(".btn_delete_yes");
+    btnSim.addEventListener("click", function() {
+      deletePaleta(id);
+    })
+  }
+
+  function fecharModalDelete() {
+    document.querySelector("#overlay-delete").style.display = "none";      
+  }
 
   async function deletePaleta(id) {
     const response = await fetch(`${baseUrl}/delete/${id}`, {
@@ -151,5 +167,6 @@ async function abrirModalCadastro(id = null) {
     const result = await response.json();
     alert(result.message)
     document.getElementById("paletaList").innerHTML = ""
-    findAllPaletas()
+    fecharModalDelete();
+    findAllPaletas();
   };
