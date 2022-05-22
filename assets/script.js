@@ -103,7 +103,6 @@ async function abrirModalCadastro(id = null) {
     };
   
     const modoEdicaoAtivado = id != "";
-
     const endpoint = baseUrl + (modoEdicaoAtivado ? `/update/${id}` : 
     '/create');
   
@@ -123,7 +122,7 @@ async function abrirModalCadastro(id = null) {
         <div>
             <div class="PaletaListaItem__id">${paleta._id}</div>
             <div class="PaletaListaItem__sabor">${novaPaleta.sabor}</div>
-            <div class="PaletaListaItem__preco">R$ ${novaPaleta.preco.toFixed(2)}</div>
+            <div class="PaletaListaItem__preco">R$ ${novaPaleta.preco}</div>
             <div class="PaletaListaItem__descricao">${novaPaleta.descricao}</div>
             <div class="PaletaListaItem__acoes Acoes">
                 <button class="Acoes__editar" onclick="editPaleta(${novaPaleta._id})">editar</button>
@@ -133,15 +132,19 @@ async function abrirModalCadastro(id = null) {
             <img class="PaletaListaItem__foto" src=${novaPaleta.foto} alt=${`Paleta de ${novaPaleta.sabor}`} />
     </div>`;
 
+    
     if (modoEdicaoAtivado) {
         document.querySelector(`#PaletaListaItem_${id}`).outerHTML = html;
+        alert("Paleta editada com sucesso!")
       } else {
         document.getElementById("paletaList").insertAdjacentHTML("beforeend", html);
       }
 
       
-
-  fecharModal();
+  
+      document.getElementById("paletaList").innerHTML = ""
+      fecharModal();
+      findAllPaletas();  
   };
 
   function abrirModalDelete(id) {
