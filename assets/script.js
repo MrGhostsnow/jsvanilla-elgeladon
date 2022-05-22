@@ -40,12 +40,12 @@ async function findPaletaById() {
     paletaEscolhidaDiv.innerHTML = `
     <div class="PaletaCardItem" id="PaletaListaItem_${paleta._id}>
       <div>
-        <div class="PaletaListaItem__id">${paleta._id}</div>
+        // <div class="PaletaCardItem__id">${paleta._id}</div>
         <div class="PaletaCardItem__sabor">${paleta.sabor}</div>
         <div class="PaletaCardItem__preco">R$ ${paleta.preco}</div>
         <div class="PaletaCardItem__descricao">${paleta.descricao}</div>
       </div>
-        <div class="PaletaListaItem__acoes Acoes">
+        <div class="PaletaCardItem__acoes Acoes">
               <button class="Acoes__editar" onclick="abrirModalCadastro('${paleta._id}')">editar</button>
               <button class="Acoes__deletar" onclick="abrirModalDelete('${paleta._id}')">deletar</button>
         </div>
@@ -102,7 +102,7 @@ async function abrirModalCadastro(id = null) {
       foto,
     };
   
-    const modoEdicaoAtivado = id != "";
+    const modoEdicaoAtivado = !!id;
     const endpoint = baseUrl + (modoEdicaoAtivado ? `/update/${id}` : 
     '/create');
   
@@ -116,7 +116,7 @@ async function abrirModalCadastro(id = null) {
     });
     
       const novaPaleta = await response.json();
-
+      let isEdit = true
       const html = `
     <div class="PaletaListaItem" id="PaletaListaItem_${novaPaleta._id}">
         <div>
@@ -140,11 +140,12 @@ async function abrirModalCadastro(id = null) {
         document.getElementById("paletaList").insertAdjacentHTML("beforeend", html);
       }
 
-      
+    document.getElementById("id").value = "";
+
+    fecharModal();
+    document.location.reload(true);
   
-      document.getElementById("paletaList").innerHTML = ""
-      fecharModal();
-      findAllPaletas();  
+      
   };
 
   function abrirModalDelete(id) {
