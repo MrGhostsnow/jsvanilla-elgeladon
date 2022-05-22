@@ -4,7 +4,7 @@ async function findAllPaletas() {
   const response = await fetch(`${baseUrl}/find-paletas`);
 
   const paletas = await response.json();
-  console.log(paletas)
+  console.log(paletas);
 
   paletas.forEach((paleta) => {
     document.getElementById("paletaList").insertAdjacentHTML(
@@ -57,22 +57,22 @@ async function findPaletaById() {
 
 async function abrirModalCadastro(id = null) {
     if (id != null) {
-      document.querySelector("#title-header-modal").innerText = "Atualizar Paleta"
-      document.querySelector("#button-form-modal").innerText = "Atualizar"
+      document.querySelector("#title-header-modal").innerText = "Atualizar Paleta";
+      document.querySelector("#button-form-modal").innerText = "Atualizar";
 
-      const response = await fetch(`${baseUrl}/find-paleta/${id}`)
-      const paleta = await response.json()
+      const response = await fetch(`${baseUrl}/find-paleta/${id}`);
+      const paleta = await response.json();
 
       
-      const sabor = document.querySelector("#sabor").value = paleta.sabor
-      const preco = document.querySelector("#preco").value = paleta.preco
-      const descricao = document.querySelector("#descricao").value = paleta.descricao
-      const foto = document.querySelector("#foto").value = paleta.foto
-      document.querySelector("#id").value = paleta._id
+      const sabor = document.querySelector("#sabor").value = paleta.sabor;
+      const preco = document.querySelector("#preco").value = paleta.preco;
+      const descricao = document.querySelector("#descricao").value = paleta.descricao;
+      const foto = document.querySelector("#foto").value = paleta.foto;
+      document.querySelector("#id").value = paleta._id;
 
     }else {
-      document.querySelector("#title-header-modal").innerText = "Cadastrar Paleta"
-      document.querySelector("#button-form-modal").innerText = "Cadastrar"
+      document.querySelector("#title-header-modal").innerText = "Cadastrar Paleta";
+      document.querySelector("#button-form-modal").innerText = "Cadastrar";
     }
 
 
@@ -116,7 +116,7 @@ async function abrirModalCadastro(id = null) {
     });
     
       const novaPaleta = await response.json();
-      let isEdit = true
+      let isEdit = true;
       const html = `
     <div class="PaletaListaItem" id="PaletaListaItem_${novaPaleta._id}">
         <div>
@@ -135,7 +135,7 @@ async function abrirModalCadastro(id = null) {
     
     if (modoEdicaoAtivado) {
         document.querySelector(`#PaletaListaItem_${id}`).outerHTML = html;
-        alert("Paleta editada com sucesso!")
+        alert("Paleta editada com sucesso!");
       } else {
         document.getElementById("paletaList").insertAdjacentHTML("beforeend", html);
       }
