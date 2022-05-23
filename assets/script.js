@@ -38,18 +38,18 @@ async function findPaletaById() {
     const paletaEscolhidaDiv = document.getElementById("paletaEscolhida");
   
     paletaEscolhidaDiv.innerHTML = `
-    <div class="PaletaCardItem" id="PaletaListaItem_${paleta._id}>
+    <div class="PaletaListaItem" id="PaletaListaItem_${paleta._id}>
       <div>
-        // <div class="PaletaCardItem__id">${paleta._id}</div>
-        <div class="PaletaCardItem__sabor">${paleta.sabor}</div>
-        <div class="PaletaCardItem__preco">R$ ${paleta.preco}</div>
-        <div class="PaletaCardItem__descricao">${paleta.descricao}</div>
+        // <div class="PaletaListaItem__id">${paleta._id}</div>
+        <div class="PaletaListaItem__sabor">${paleta.sabor}</div>
+        <div class="PaletaListaItem__preco">R$ ${paleta.preco}</div>
+        <div class="PaletaListaItem__descricao">${paleta.descricao}</div>
       </div>
-        <div class="PaletaCardItem__acoes Acoes">
+        <div class="PaletaListaItem__acoes Acoes">
               <button class="Acoes__editar" onclick="abrirModalCadastro('${paleta._id}')">editar</button>
               <button class="Acoes__deletar" onclick="abrirModalDelete('${paleta._id}')">deletar</button>
         </div>
-        <img class="PaletaCardItem__foto" src=${
+        <img class="PaletaListaItem__foto" src=${
           paleta.foto
         } alt=${`Paleta de ${paleta.sabor}`} />
     </div>`;
